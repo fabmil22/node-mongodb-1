@@ -10,9 +10,38 @@ const app = express()
 
 
 
-app.get('/usuario/', function (req, res) {
-    res.json('getusuario')
+app.get('/usuario', function (req, res) {
+
+
+  let desde = Number(req.query.desde) || 0;
+  let limit = Number(req.query.limit) || 3;
+
+Usuario.find({"estado":true} ,'email  role  estado  google nombre apellido' ).skip(desde).limit(limit)
+    .exec((err , usuarios)=>{
+
+            if (err){
+              return res.status(400).json({
+                ok:false,
+                err
+              });
+            }
+  Usuario.count({"estado":true}, (err, counter)=>{
+          res.json({
+            ok: true,
+            usuarios,
+            counter,
+            mostrados: usuarios.length
+          })
+
   })
+          
+
+    })
+
+    
+  })
+
+
    
   app.post('/usuario/', function (req , res) {
       let  body = req.body
@@ -49,9 +78,11 @@ app.get('/usuario/', function (req, res) {
     app.put('/usuario/:id', function (req, res) {
         let id = req.params.id;
 
-      let body = _.pick( req.body , [ 'nombre','apellido','email', 'img','role'] );
+      let body = _.pick( req.params , [ 'nombre','apellido','email', 'img','role'] );
       Usuario.findOneAndUpdate( id , body, {new : true ,  runValidators: true, }, (err , usuarioDb) => {
-
+      
+      
+        console.log('logrado', usuarioDb);
         if (err){
           return res.status(400).json({
              ok:false,
@@ -70,8 +101,34 @@ app.get('/usuario/', function (req, res) {
 
 
   
-    app.delete('/usuario/', function (req, res) {
-      res.json('delete usuario')
+    app.delete('/usuario/:id', function (req, res) {
+      let id = req.params.id;
+
+      let status ={
+        estado: false
+      }
+      Usuario.findOneAndUpdate( id, status, (err , usuario) => {
+      
+      
+
+        if (err){
+          return res.status(400).json({
+             ok:false,
+             err
+           });
+        }
+
+        if (usuario === undefined || usuario === null){
+          return res.status(400).json({
+             ok:false,
+             err:'usuario no existe'
+           });
+        }
+        res.json({
+          ok: true,
+          usuario
+              })
+      })
     })
      
 
