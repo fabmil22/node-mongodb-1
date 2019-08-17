@@ -1,19 +1,22 @@
 {
   "name": "rest-mongo1",
   "version": "1.0.0",
+  
+  "description": "aplicacion de mongo y node",
+  "main": "server.js",
+  "postinstall": "npm run build",
+  "scripts": {
+    "postinstall": "ng build --aot ",
+    "heroku-postbuild": "",
+    "start": "node server/server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "engines": {
     "npm":"6.9.0",
     "node": "10.16.1"
   },
 
-  "description": "aplicacion de mongo y node",
-  "main": "server.js",
-  
-  "scripts": {
-    "heroku-postbuild": "npm run build",
-    "start": "node server/server",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+
   "author": "fabmil22",
   "license": "ISC",
   "dependencies": {
