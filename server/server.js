@@ -16,7 +16,9 @@ app.use(bodyParser.json())
 app.use( require('./routes/usuario'))
 
 //connect bd
-  mongoose.connect('mongodb://127.0.0.1:27017/cafe', (err , res)=>{
+  mongoose.connect(conection, 
+  { userNewUrlParser : true , useCreateIndex: true},
+  (err , res)=>{
   if ( err) throw err;
   console.log('base de datos online');
 
