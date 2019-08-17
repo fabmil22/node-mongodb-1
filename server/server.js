@@ -16,7 +16,7 @@ app.use(bodyParser.json())
 app.use( require('./routes/usuario'))
 
 //connect bd
-  mongoose.connect('mongodb+srv://fab:YfOuITBh7kkIs6bt@cluster0-hspno.gcp.mongodb.net/cafe?retryWrites=true&w=majority', 
+  mongoose.connect(conection, 
   (err , res)=>{
   if ( err) throw err;
   console.log('base de datos online');
