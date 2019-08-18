@@ -8,10 +8,10 @@ const myPlaintextPassword = 's0/\/\P4$$w0rD';
 
 const app = express()
 
+const { verificaToken, checkRole}  = require('../middlewares/autorization')
 
 
-app.get('/usuario', function (req, res) {
-
+app.get('/usuario', verificaToken, (req, res) => {
 
   let desde = Number(req.query.desde) || 0;
   let limit = Number(req.query.limit) || 3;
@@ -43,7 +43,7 @@ Usuario.find({"estado":true} ,'email  role  estado  google nombre apellido' ).sk
 
 
    
-  app.post('/usuario/', function (req , res) {
+  app.post('/usuario/', [verificaToken, checkRole],(req , res) => {
       let  body = req.body
       
   let usuario = new Usuario({
@@ -75,7 +75,7 @@ Usuario.find({"estado":true} ,'email  role  estado  google nombre apellido' ).sk
   
     
 
-    app.put('/usuario/:id', function (req, res) {
+    app.put('/usuario/:id',verificaToken,  (req, res) =>{
         let id = req.params.id;
 
       let body = _.pick( req.params , [ 'nombre','apellido','email', 'img','role'] );
@@ -101,7 +101,7 @@ Usuario.find({"estado":true} ,'email  role  estado  google nombre apellido' ).sk
 
 
   
-    app.delete('/usuario/:id', function (req, res) {
+    app.delete('/usuario/:id',verificaToken,  (req, res) =>{
       let id = req.params.id;
 
       let status ={
