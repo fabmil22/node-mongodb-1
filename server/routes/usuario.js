@@ -43,7 +43,7 @@ Usuario.find({"estado":true} ,'email  role  estado  google nombre apellido' ).sk
 
 
    
-  app.post('/usuario/', [verificaToken, checkRole],(req , res) => {
+  app.post('/usuario/',(req , res) => {
       let  body = req.body
       
   let usuario = new Usuario({
