@@ -21,3 +21,6 @@ process.env.CADUCIDAD_TOKEN =  parseInt(Date.now() / 1000) + 20 * 60;
 /*                           seed de autentificacion                          */
 /* -------------------------------------------------------------------------- */
 process.env.SEED_TOKEN = process.env.SEED_TOKEN  || 'secret';
+
+/* ------------------------------ google client ----------------------------- */
+process.env.CLIENT_ID = process.env.CLIENT_ID  || '286307871146-ta1d4gd4nfbtt5v6p3h89ovamr0uhp24.apps.googleusercontent.com';
