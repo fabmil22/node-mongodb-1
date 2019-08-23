@@ -78,7 +78,7 @@ Usuario.find({"estado":true} ,'email  role  estado  google nombre apellido' ).sk
     app.put('/usuario/:id',verificaToken,  (req, res) =>{
         let id = req.params.id;
 
-      let body = _.pick( req.params , [ 'nombre','apellido','email', 'img','role'] );
+      let body = _.pick( req.params , [ 'nombre','apellido','email', 'img','role' , '_id'] );
       Usuario.findOneAndUpdate( id , body, {new : true ,  runValidators: true, }, (err , usuarioDb) => {
       
       

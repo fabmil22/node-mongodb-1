@@ -13,11 +13,7 @@ app.post('/login' , function (req , res){
 
 
     let  body = req.body;
-    //
-
-
-
-
+    
     if(body.email){
 
         Usuario.findOne({email:body.email } , (err , usuariodb) =>{
@@ -100,11 +96,6 @@ app.post('/google' , async (req , res)=>{
                 message: e
             });
         });
-    // res.json({
-    //     token : googleUser 
-    // })
-
-
 
 //verifica si en la base de datos existe  
     Usuario.findOne( {email: googleUser.email }, (err , usuariodb)=>{

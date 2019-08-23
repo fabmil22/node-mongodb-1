@@ -15,7 +15,7 @@ conection = ( process.env.NODE_ENV  === 'dev') ? 'mongodb://127.0.0.1:27017/cafe
 /* -------------------------------------------------------------------------- */
 /*                            vencimiento del token                           */
 /* -------------------------------------------------------------------------- */
-process.env.CADUCIDAD_TOKEN =  parseInt(Date.now() / 1000) + 20 * 60;
+process.env.CADUCIDAD_TOKEN ='48h';
 
 /* -------------------------------------------------------------------------- */
 /*                           seed de autentificacion                          */
