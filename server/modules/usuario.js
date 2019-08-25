@@ -29,10 +29,7 @@ let  scemaUsuario = new Schema({
         type: String,
         required:  [ true, 'es password es requerido']   
     },
-    img :{
-        type: String,
-        required:  false  
-    },
+    img :{type: String,required:  false  },
     role :{
         type: String,
         required: true,
