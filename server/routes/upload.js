@@ -25,12 +25,10 @@ app.put('/upload/:tipo/:id',   (req, res) => {
           message: "no se ha seleccionado archivo"
       });
     }
-
-
-
+  
     // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
    let sampleFile = req.files.archivo;
-   let nameFile =`${id}_${Math.random(1,2000)}_${Math.random()}.jpg`
+   let nameFile =` ${id}_${sampleFile.name}_${Math.random()}.jpg`
     // Use the mv() method to place the file somewhere on your server
     sampleFile.mv( `./uploads/${tipo}/${nameFile}`, function(err) {
       if (err)
